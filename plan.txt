@@ -1,0 +1,4 @@
+GITHUB!!!
+1. logowanie z polączenie z baza danych
+2. interfejs graficzny dla 3 uzytkownikow
+3. wyswietlanie rekordów
