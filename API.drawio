@@ -1,0 +1,22 @@
+<mxfile host="app.diagrams.net" modified="2024-05-13T20:38:14.629Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="Zmi-CBs9oA-NifGg4BgF" version="24.4.0" type="device">
+  <diagram name="Strona-1" id="hkPm3Xja0tyblEVrSZbv">
+    <mxGraphModel dx="2620" dy="965" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="WBgdDjQkJNqYSv2WSQdY-1" value="LOGOWANIE:&lt;div&gt;- wysłanie hasła i loginu do bazy danych,&lt;/div&gt;&lt;div&gt;-&amp;nbsp; dopasowanie odpowiedzi do odpowiedniego okienka&lt;/div&gt;&lt;div&gt;- przejście do odpowiedniego okienka&amp;nbsp;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="40" width="300" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="WBgdDjQkJNqYSv2WSQdY-2" value="&lt;div&gt;OKNO Z:&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(82, 96, 105); font-family: Roboto, sans-serif; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255);&quot;&gt;-wydawanie części,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(82, 96, 105); font-family: Roboto, sans-serif; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255);&quot;&gt;&amp;nbsp;-przyjmowanie części na stan,&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(82, 96, 105); font-family: Roboto, sans-serif; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255);&quot;&gt;-dodawanie nowych części&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;align=center;" vertex="1" parent="1">
+          <mxGeometry x="-20" y="310" width="190" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="WBgdDjQkJNqYSv2WSQdY-3" value="&lt;div&gt;OKNO Z:&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(82, 96, 105); font-family: Roboto, sans-serif; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255);&quot;&gt;-pobieranie części z magazynu,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(82, 96, 105); font-family: Roboto, sans-serif; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255);&quot;&gt;&amp;nbsp;-wykonanie usługi, podjęcie usługi,&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(82, 96, 105); font-family: Roboto, sans-serif; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255);&quot;&gt;-odrzucenie usługi, reklamacja&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;align=center;" vertex="1" parent="1">
+          <mxGeometry x="319" y="320" width="190" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="WBgdDjQkJNqYSv2WSQdY-4" value="&lt;div&gt;OKNO Z:&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(82, 96, 105); font-family: Roboto, sans-serif; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255);&quot;&gt;&amp;nbsp;-umówienie wizyty,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(82, 96, 105); font-family: Roboto, sans-serif; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255);&quot;&gt;&amp;nbsp;-status usługi,&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(82, 96, 105); font-family: Roboto, sans-serif; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255);&quot;&gt;-koszt,&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(82, 96, 105); font-family: Roboto, sans-serif; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255);&quot;&gt;-pobranie FV,&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(82, 96, 105); font-family: Roboto, sans-serif; font-size: 14px; text-align: left; background-color: rgb(255, 255, 255);&quot;&gt;-złożenie reklamacji do istniejącego zlecenia usługi&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;align=center;" vertex="1" parent="1">
+          <mxGeometry x="650" y="530" width="190" height="190" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
