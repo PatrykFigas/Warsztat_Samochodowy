@@ -1,0 +1,182 @@
+                                     Temat dla pracy: Aplikacja dla serwisu samochodowego
+
+Aplikacja zbudowana w kontenerach docker
+
+baza danych
+API (backend)
+GUI (frontend) - osobny dostęp dla pracowników serwisu wg. typu użytkownika, administrator systemu, klient
+
+Podstawowe składniki aplikacji:
+
+1. terminarz
+2. magazyn 
+3. zamówienia
+
+Co powinna wykonywać aplikacja - wstępne składniki:
+
+- proces realizacji zlecenia serwisowego(obieg dokumentów) - zlecenie --> serwis --> magazyn --> serwis --> usługa
+- dokumenty operacyjne na stanie magazynu (WZ, WW, ZL, ZM, FV)
+- obliczanie kosztów
+- panel zarządzania użytkownikami
+- panel zarządzania marżą dla każdej kategorii towaru i usługi
+
+Uprawnienia użytkowników:
+
+magazynier - wydawanie części, przyjmowanie części na stan, dodawanie nowych części
+serwis - pobieranie części z magazynu, wykonanie usługi, podjęcie usługi, odrzucenie usługi, reklamacja
+klient - umówienie wizyty, status usługi, koszt, pobranie FV, złożenie reklamacji do istniejącego zlecenia usługi
+
+Dobór technologii:
+Bazy danych:
+
+Postgresql 
+
+API:
+
+C#
+
+GUI:
+
+windows forms C#
+
+---------------------------------------------------------------------PLAN------------------------------------------------------------------------------------
+
+1. Projektowanie bazy danych w PostgreSQL:
+- Zdefiniujemy strukturę bazy danych, obejmującą tabele dla terminarza, magazynu, zamówień oraz inne niezbędne tabele na potrzeby użytkowników, uprawnień itp.
+- Ustalimy relacje między poszczególnymi tabelami, aby zapewnić spójność danych.
+
+2. Tworzenie API w C#:
+- Opracujemy backend aplikacji, który będzie obsługiwał logikę biznesową.
+- Stworzymy zestaw interfejsów API umożliwiających komunikację między frontendem a bazą danych.
+- Zaimplementujemy funkcje umożliwiające obsługę zleceń serwisowych, operacji magazynowych, autoryzacji użytkowników itp.
+
+3. Rozwinięcie GUI w Windows Forms C#:
+- Zaprojektujemy interfejs użytkownika dla aplikacji, uwzględniając różne role użytkowników (magazynier, serwisant, klient, administrator).
+- Stworzymy formularze umożliwiające interakcję z systemem, takie jak formularze zlecenia serwisowego, magazynu, zamówień, panelu zarządzania użytkownikami itp.
+- Skonfigurujemy GUI w taki sposób, aby zapewnić łatwe nawigowanie między różnymi funkcjonalnościami aplikacji.
+
+4. Implementacja funkcji głównych aplikacji:
+- Opracujemy logikę biznesową, która umożliwi przepływ pracy związany z realizacją zleceń serwisowych, obsługą magazynu, obliczaniem kosztów itp.
+- Zaimplementujemy funkcje umożliwiające zarządzanie użytkownikami, definiowanie uprawnień oraz zarządzanie marżami dla poszczególnych kategorii towarów i usług.
+
+5. Testowanie i optymalizacja:
+- Przeprowadzimy testy aplikacji, aby upewnić się, że wszystkie funkcje działają poprawnie i spełniają oczekiwania użytkowników.
+- Zidentyfikujemy i wyeliminujemy wszelkie błędy oraz zoptymalizujemy wydajność aplikacji, jeśli to konieczne.
+
+6. Docker:
+- Zbudujemy obrazy kontenerów Docker dla każdej części aplikacji: bazy danych, backendu oraz frontendu.
+- Skonfigurujemy sieć Docker, aby zapewnić komunikację między kontenerami.
+- Uruchomimy aplikację w kontenerach Docker, upewniając się, że wszystko działa poprawnie.
+
+
+------------------------------------------------------------PROJEKT BAZY DANYCH------------------------------------------------------------------------------
+
+Krok 1: Zdefiniowanie wymagań bazy danych
+
+Tabela dla terminarza zlecenia serwisowego.
+Tabela dla magazynu części.
+Tabela dla zamówień.
+Tabela dla użytkowników i ich uprawnień.
+
+Krok 2: Projektowanie struktury bazy danych
+
+Struktura bazy danych:
+
+- Tabela terminarza:
+id (klucz główny)
+data (data zlecenia)
+klient_id (identyfikator klienta)
+serwisant_id (identyfikator serwisanta)
+status (status zlecenia: oczekujące, w trakcie, zakończone, itp.)
+
+- Tabela magazynu:
+id (klucz główny)
+nazwa (nazwa części)
+ilość (ilość dostępnych części)
+cena (cena jednostkowa części)
+kategoria (kategoria części: mechaniczna, elektryczna, itp.)
+
+- Tabela zamówień:
+id (klucz główny)
+terminarz_id (identyfikator zlecenia serwisowego)
+data_zamowienia (data zamówienia)
+nazwa (nazwa części)
+ilość (ilość zamówionych części)
+status (status zamówienia: złożone, oczekujące, dostarczone, itp.)
+
+- Tabela użytkowników:
+id (klucz główny)
+login (login użytkownika)
+hasło (hasło użytkownika)
+typ (typ użytkownika: magazynier, serwisant, klient, administrator)
+
+Krok 3: Implementacja w PostgreSQL
+Po zaprojektowaniu struktury bazy danych możemy przejść do jej implementacji w PostgreSQL. Tworzenie tabel w pgAdmin za pomocą poleceń SQL:
+
+CREATE TABLE terminarz (
+    id SERIAL PRIMARY KEY,
+    data DATE,
+    klient_id INT,
+    serwisant_id INT,
+    status VARCHAR(50)
+);
+
+CREATE TABLE magazyn (
+    id SERIAL PRIMARY KEY,
+    nazwa VARCHAR(100),
+    ilość INT,
+    cena NUMERIC(10, 2),
+    kategoria VARCHAR(50)
+);
+
+CREATE TABLE zamówienia (
+    id SERIAL PRIMARY KEY,
+    terminarz_id INT,
+    data_zamowienia DATE,
+    nazwa VARCHAR(100),
+    ilość INT,
+    status VARCHAR(50)
+);
+
+CREATE TABLE użytkownicy (
+    id SERIAL PRIMARY KEY,
+    login VARCHAR(50),
+    hasło VARCHAR(50),
+    typ VARCHAR(50)
+);
+
+UZUPEŁNIANIE TABELI (przykładowe dane)
+
+TABELA TERMINARZ
+
+INSERT INTO terminarz (data, klient_id, serwisant_id, status) VALUES
+('2024-04-22', 1, 1, 'oczekujące'),
+('2024-04-23', 2, 2, 'w trakcie'),
+('2024-04-24', 3, 1, 'oczekujące'),
+('2024-04-25', 4, 3, 'zakończone');
+
+TABELA MAGAZYN
+
+INSERT INTO magazyn (nazwa, ilość, cena, kategoria) VALUES
+('Olej silnikowy', 20, 50.00, 'mechaniczna'),
+('Filtr powietrza', 15, 20.00, 'mechaniczna'),
+('Żarówka', 30, 5.00, 'elektryczna'),
+('Hamulce', 10, 100.00, 'mechaniczna');
+
+TABELA ZAMÓWIENIA
+
+INSERT INTO zamówienia (terminarz_id, data_zamowienia, nazwa, ilość, status) VALUES
+(1, '2024-04-21', 'Olej silnikowy', 2, 'złożone'),
+(2, '2024-04-21', 'Filtr powietrza', 1, 'oczekujące'),
+(3, '2024-04-20', 'Żarówka', 3, 'dostarczone'),
+(4, '2024-04-19', 'Hamulce', 2, 'złożone');
+
+TABELA UŻYTKOWNICY
+
+INSERT INTO użytkownicy (login, hasło, typ) VALUES
+('jan_kowal', '********', 'serwisant'),
+('anna_nowak', '********', 'magazynier'),
+('piotr_mal', '********', 'klient'),
+('ewa_adam', '********', 'klient');
+
+
